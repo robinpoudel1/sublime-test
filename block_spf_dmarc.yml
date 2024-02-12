@@ -10,3 +10,16 @@ and any(distinct(headers.hops, .authentication_results.spf is not null),
 and any(distinct(headers.hops, .authentication_results.dmarc is not null),
         strings.ilike(.authentication_results.dmarc, "*fail")
 )
+attack_types:
+  - "Credential Phishing"
+tactics_and_techniques:
+  - "Evasion"
+  - "Image as content"
+detection_methods:
+  - "Computer Vision"
+  - "Content analysis"
+  - "File analysis"
+  - "Header analysis"
+  - "Natural Language Understanding"
+  - "Optical Character Recognition"
+id: "2142-12321"
