@@ -1,0 +1,7 @@
+type.inbound
+and any(distinct(headers.hops, .authentication_results.spf is not null),
+        strings.ilike(.authentication_results.spf, "*fail")
+)
+and any(distinct(headers.hops, .authentication_results.dmarc is not null),
+        strings.ilike(.authentication_results.dmarc, "*fail")
+)
