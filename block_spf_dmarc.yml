@@ -3,22 +3,17 @@ description: "Block SPF and DMARC Fail"
 type: "rule"
 severity: "medium"
 source: |
-type.inbound
-and any(distinct(headers.hops, .authentication_results.spf is not null),
-        strings.ilike(.authentication_results.spf, "*fail")
-)
-and any(distinct(headers.hops, .authentication_results.dmarc is not null),
-        strings.ilike(.authentication_results.dmarc, "*fail")
-)
+        type.inbound
+        and any(distinct(headers.hops, .authentication_results.spf is not null),
+                strings.ilike(.authentication_results.spf, "*fail")
+        )
+        and any(distinct(headers.hops, .authentication_results.dmarc is not null),
+                strings.ilike(.authentication_results.dmarc, "*fail")
+        )
 attack_types:
   - "Credential Phishing"
 tactics_and_techniques:
   - "Evasion"
-  - "Image as content"
 detection_methods:
   - "Computer Vision"
-  - "Content analysis"
-  - "File analysis"
   - "Header analysis"
-  - "Natural Language Understanding"
-  - "Optical Character Recognition"
